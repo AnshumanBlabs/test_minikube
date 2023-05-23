@@ -1,0 +1,53 @@
+ check the deployment status==>
+kubectl get deployments
+
+ check the deployment status==>
+kubectl get pods
+
+check the deployment flow==>
+kubectl describe deployment deployment
+
+check the logs==>
+kubectl logs pod name
+
+inside the pod==>
+kubectl exec -it pod name -- sh
+
+image update in the pod==>
+kubectl rolling-update <pod_name> --image=<new_image>
+
+docker images path==>
+docker inspect --format='{{.GraphDriver.Data.MergedDir}}' <image-name>
+
+port forwording==>
+kubectl port-forward service/my-service 3001:80
+
+get endpoint==>
+kubectl get endpoints
+
+dscribe servcie==>
+kubectl describe service/my-service
+
+check the cluster name==>
+kubectl config current-context
+kubectl config get-contexts minikube
+minikube ip -p minikube
+==>http://192.168.49.2:30080/ping
+
+
+inside the pods==>
+kubectl exec -it <pod-name> -- sh
+
+health check==>
+wget http://localhost:3000/health
+
+access shell and check the docker images
+minikube ssh
+docker images
+
+-----------------------------
+1. local check the code.
+2. create docker image.
+3. push to docker deamon.
+4. create container
+5. write the image and container in the deployment.yml file

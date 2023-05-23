@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  labels:
+    app: testweb-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: testweb-app
+  template:
+    metadata:
+      labels:
+        app: testweb-app
+    spec:
+      containers:
+     #   - name: container05
+          image: minikubee-image
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
