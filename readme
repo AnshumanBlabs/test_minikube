@@ -1,7 +1,7 @@
  check the deployment status==>
 kubectl get deployments
 
- check the deployment status==>
+ check the pods status==>
 kubectl get pods
 
 check the deployment flow==>
@@ -45,9 +45,5 @@ access shell and check the docker images
 minikube ssh
 docker images
 
------------------------------
-1. local check the code.
-2. create docker image.
-3. push to docker deamon.
-4. create container
-5. write the image and container in the deployment.yml file
+image push in docker deamon==>
+minikube image load lab-image

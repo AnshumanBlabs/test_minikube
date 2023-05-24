@@ -7,7 +7,7 @@ const server = http.createServer(function (req, res) {
     res.write("This is the test server");
     res.end();
   } else if (req.url === "/health") {
-    res.writeHead(204);
+    res.writeHead(401);
     res.write("");
     res.end();
   } else if (req.url === "/ping") {

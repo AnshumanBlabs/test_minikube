@@ -5,7 +5,7 @@ metadata:
   labels:
     app: testweb-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: testweb-app
@@ -15,8 +15,8 @@ spec:
         app: testweb-app
     spec:
       containers:
-     #   - name: container05
-          image: minikubee-image
+        - name: container05
+          image: anshuman01/test-image
           ports:
             - containerPort: 3000
           readinessProbe:
