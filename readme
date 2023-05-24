@@ -44,10 +44,3 @@ wget http://localhost:3000/health
 access shell and check the docker images
 minikube ssh
 docker images
-
------------------------------
-1. local check the code.
-2. create docker image.
-3. push to docker deamon.
-4. create container
-5. write the image and container in the deployment.yml file
