@@ -1,0 +1,45 @@
+name: Input Testing Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        description: 'Input 1'
+        required: false
+        default: 'default-value-1'
+      input2:
+        description: 'Input 2'
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Inputs
+        run: |
+          input1=${{ github.event.inputs.input1 }}
+          input2=${{ github.event.inputs.input2 }}
+
+          if [[ -z $input1 ]]; then
+            input1='default-value-1'
+          fi
+
+          if [[ $input2 == "world" ]]; then
+            echo "Input 2 is valid!"
+          else
+            echo "Invalid input for Input 2!"
+            exit 1
+          fi
+
+      - name: Display Output
+        run: |
+          input1=${{ github.event.inputs.input1 }}
+          input2=${{ github.event.inputs.input2 }}
+
+          if [[ $input1 == "default-value-1" && $input2 == "world" ]]; then
+            echo "Output: Greetings, world!"
+          elif [[ $input1 == "default-value-1" && $input2 == "sesame" ]]; then
+            echo "Output: The magic word is correct!"
+          else
+            echo "Output: Unknown input combination."
+          fi
