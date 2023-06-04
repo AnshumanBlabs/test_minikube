@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: myapp.local
+      http:
+        paths:
+          - path: /ping
+            pathType: Prefix
+            backend:
+              service:
+                name: testweb-app1
+                port:
+                  number: 3000
+          - path: /ping1
+            pathType: Prefix
+            backend:
+              service:
+                name: testweb-app2
+                port:
+                  number: 3000

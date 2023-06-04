@@ -47,3 +47,34 @@ docker images
 
 image push in docker deamon==>
 minikube image load lab-image
+
+-----------------------------
+prometheous installation==>
+-----------------------------
+sudo apt update
+wget https://github.com/prometheus/prometheus/releases/download/v2.33.1/prometheus-2.33.1.linux-amd64.tar.gz
+tar xvf prometheus-*.tar.gz
+sudo nano /opt/prometheus/prometheus.yml
+
+
+start the prometheous==>
+/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml
+
+create the service==>
+sudo nano /etc/systemd/system/prometheus.service
+
+enable the service and start Prometheus:
+
+sudo systemctl daemon-reload
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+
+metrics server enable==>
+minikube addons enable metrics-server
+
+hpa
+kubectl autoscale deployment testweb-app1 --cpu-percent=20 --min=1 --max=10
+
+inside the pods==>
+kubectl exec -it testweb-app1-869769f867-gq297 -- sh
+
